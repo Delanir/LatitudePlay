@@ -40,5 +40,7 @@ latitude= float(a)
 for indexCountry in range(len(countries)):
 	if latitude >= minLatitude[indexCountry] and latitude <=maxLatitude[indexCountry]:
 		print countriesExt[indexCountry]
+		print minLatitude[indexCountry]
+		print maxLatitude[indexCountry]
 
 
