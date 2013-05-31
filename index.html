@@ -11,15 +11,28 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCH9KdqfFSFeB65KOccUBM4gBor2lu0_DU&sensor=false&libraries=drawing">
     </script>
     <script type="text/javascript">
-     var path;
+     
+var myValue;
+function setValue(s)
+{
+    myValue = s;
+}
+
+function getValue()
+{
+    alert(window.myValue); // yup, it's "test"
+}
+
 
       function initialize() {
+        var path;
+     var map;
         var mapOptions = {
           center: new google.maps.LatLng(34.397, 150.644),
-          zoom: 3,
+          zoom: 2,
           mapTypeId: google.maps.MapTypeId.SATELLITE
         };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
+        map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
 
         var latCoordinates = [
@@ -36,19 +49,20 @@
   });
 
   path.setMap(map);
+   setValue(path);     
         
+        google.maps.event.addListener(map, 'click', function(event) {
+        map.setZoom(2);
+       var path=window.myValue;
+        var lat = event.latLng.lat();
         
-        google.maps.event.addListener(map, 'click', function() {
-        map.setZoom(3);
-        map.setCenter(event.latLng);
-        var lat = event.latLng.latitude;
          var latCoordinates = [
         new google.maps.LatLng(lat, 0),
       new google.maps.LatLng(lat, 180),
       new google.maps.LatLng(lat, -180),
       new google.maps.LatLng(lat, 0)
   ];
-  path.SetPath(latCoordinates);
+  path.setPath(latCoordinates);
 
   
         });
